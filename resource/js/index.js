@@ -1,3 +1,9 @@
-import dataRequest from 'App/requests/dataRequest'
+import Vue from 'vue'
+import App from 'App/components/App'
 
-dataRequest(console.log)
+new Vue({
+    el: '#app',
+    render(createElement) {
+        return createElement(App)
+    }
+})
