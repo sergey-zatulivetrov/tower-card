@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Tower card",
     "scripts": {
-        "build": "gulp build",
+        "build": "gulp build --production",
         "watch": "gulp watch",
         "clean": "gulp clean",
         "server": "node ./app/index.js"
