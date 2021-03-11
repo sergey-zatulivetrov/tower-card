@@ -41,7 +41,9 @@
         "gulp-uglify": "^3.0.2",
         "node-sass-tilde-importer": "^1.0.2",
         "rimraf": "^3.0.2",
-        "webpack": "^5.24.4",
+        "vue-loader": "^15.9.6",
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^4.46.0",
         "webpack-stream": "^6.1.2",
         "yargs": "^16.2.0"
     },

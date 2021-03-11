@@ -1,6 +1,7 @@
 'use strict'
 
 import plumber from 'gulp-plumber'
+import {VueLoaderPlugin} from 'vue-loader'
 import compiler from 'webpack'
 import webpack from 'webpack-stream'
 import {dest, src} from 'gulp'
@@ -8,12 +9,13 @@ import debug from 'gulp-debug'
 import yargs from 'yargs'
 import pathBuild from './pathBuild'
 import webpackConfig from '../webpack.config'
+import ESLintWebpackPlugin from 'eslint-webpack-plugin'
 
 export default function gulpJS(entry, name) {
     const production = !!yargs.argv.production
 
     const config = {
-        ...webpackConfig,
+        ...(webpackConfig || {}),
         mode: production ? 'production' : 'development',
         devtool: production ? false : 'source-map',
         entry,
@@ -26,12 +28,21 @@ export default function gulpJS(entry, name) {
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader'
-                    }
+                    loader: 'babel-loader'
+                },
+                {
+                    test: /\.vue$/,
+                    loader: 'vue-loader'
                 }
             ]
-        }
+        },
+        plugins: [
+            ...(webpackConfig?.plugins || []),
+            new VueLoaderPlugin(),
+            new ESLintWebpackPlugin({
+                extensions: ['js']
+            })
+        ]
     }
 
     return function gulpJS(callback) {

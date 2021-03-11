@@ -5,4 +5,5 @@ import {watch} from 'gulp'
 
 export default function watchJS(build) {
     watch(resolve('resource', '**', '*.js'), build)
+    watch(resolve('resource', '**', '*.vue'), build)
 }
